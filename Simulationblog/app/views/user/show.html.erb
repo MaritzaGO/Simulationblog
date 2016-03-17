@@ -1,0 +1,18 @@
+<h1><%= @user.name %></h1>
+<p><%= @user.articles.count %> articles</p>
+<p><%= simple_format(@user.description)%></p>
+
+<h2>Articles</h2>
+<ul>
+	<% @user.articles.each do |article| %>
+    <li><%= link_to article.title, article %></li>
+	<% end%>
+</ul>
+
+<h2>Comments</h2>
+
+<ul>
+  <% @user.comments.each do |comment| %>
+    <li><%= link_to comment.article.title, comment.article %>: <%= truncate(comment.content)%></li>
+  <% end%>
+</ul>

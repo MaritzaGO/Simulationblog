@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<h1>Articles</h1>
+
+<% @articles.each do |article| %>
+  <article>
+    <%= link_to article do %>
+      <h2><%= article.title %></h2>
+    <% end %>
+    
+    <%= link_to article.user do %>
+      <span><%= article.user.username %></span>
+    <% end %>
+    
+    <p><%= simple_format(truncate(article.content, length: 200) )%></p>
+    <% if can? :manage, article %>
+      <%= link_to 'Edit', edit_article_path(article) %>
+      <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  
+  </article>
+    
+   
+<% end %>
+
+
+<br>
+
+<%= link_to 'Write new article', new_article_path %>
