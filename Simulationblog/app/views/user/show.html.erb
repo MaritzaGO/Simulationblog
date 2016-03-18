@@ -16,3 +16,11 @@
     <li><%= link_to comment.article.title, comment.article %>: <%= truncate(comment.content)%></li>
   <% end%>
 </ul>
+
+<% if user_signed_in?%>
+
+<%= current_user.email %>
+
+<%= link_to "logout", destroy_user_session_path, method: :delete %>
+
+<%end%>
